@@ -15,7 +15,7 @@ import java.util.*;
 public class Test3 {
 
     public int firstUniqChar(String s) {
-        Map<Character, Integer> map = new HashMap();
+        HashMap<Character,Integer> map = new HashMap(s.length());
         char[] chars = s.toCharArray();
         //先统计每个字符出现的次数
         for (char ch : chars) {
@@ -31,7 +31,7 @@ public class Test3 {
     }
 
     public static int firstUniqChar2(String s) {
-        //javaApi解法
+        //javaApi解法 一个从前查找，一个从后查找，如果下标相等，说明只出现了一次
         for (int i = 0; i < s.length(); i++) {
             if (s.indexOf(s.charAt(i)) == s.lastIndexOf(s.charAt(i))) {
                 return i;
