@@ -1,5 +1,6 @@
 package com.rose.entity;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
