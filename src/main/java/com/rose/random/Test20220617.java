@@ -22,7 +22,7 @@ import java.util.*;
 public class Test20220617 {
 
     public static void main(String[] args) {
-        duplicateZeros(new int[]{0,0,0,0,0,0,0});
+        duplicateZeros2(new int[]{0,0,0,0,0,0,0});
     }
 
     public static void duplicateZeros(int[] arr) {
@@ -45,17 +45,16 @@ public class Test20220617 {
 
     /**
      * 队列
-     * @param arr
      */
     public static void duplicateZeros2(int[] arr){
         Deque<Integer> deque = new LinkedList<>();
-        for (int i = 0; i < arr.length; i++) {
-            deque.add(arr[i]);
-            if (arr[i] == 0){
+        for (int j : arr) {
+            deque.add(j);
+            if (j == 0) {
                 deque.add(0);
             }
 
-            if (deque.size() >= arr.length){
+            if (deque.size() >= arr.length) {
                 break;
             }
         }
