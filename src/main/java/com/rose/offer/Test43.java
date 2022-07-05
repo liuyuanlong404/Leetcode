@@ -18,7 +18,7 @@ package com.rose.offer;
 public class Test43 {
 
     public static void main(String[] args) {
-        System.out.println(countDigitOne(888885312));
+        System.out.println(countDigitOne2(888885312));
     }
 
     public static int countDigitOne(int n) {
@@ -38,7 +38,7 @@ public class Test43 {
         return res;
     }
 
-    public int countDigitOne2(int n) {
+    public static int countDigitOne2(int n) {
         // mulk 表示 10^k
         // 在下面的代码中，可以发现 k 并没有被直接使用到（都是使用 10^k）
         // 但为了让代码看起来更加直观，这里保留了 k
