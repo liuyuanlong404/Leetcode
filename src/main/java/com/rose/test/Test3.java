@@ -29,9 +29,7 @@ public class Test3 {
         while (num < chars.length) {
             for (int i = num; i < chars.length; i++) {
                 if (characters.contains(chars[i])) {
-                    if (max < characters.size()) {
-                        max = characters.size();
-                    }
+                    max = Math.max(characters.size(), max);
                     characters.clear();
                     num++;
                     break;
@@ -46,16 +44,16 @@ public class Test3 {
         char [] chars = s.toCharArray();
         List<Character> characters = new ArrayList<>();
         int num = 0;
-        String res = "";
+        StringBuilder res = new StringBuilder();
         while (num < chars.length) {
             for (int i = num; i < chars.length; i++) {
                 if (characters.contains(chars[i])) {
                     if (res.length() < characters.size() - 1) {
-                        res = "";
-                        for (int j = 0; j < characters.size(); j++) {
-                            res = res + characters.get(j);
+                        res = new StringBuilder();
+                        for (Character character : characters) {
+                            res.append(character);
                         }
-                        res = res + characters.get(0);
+                        res.append(characters.get(0));
                     }
                     characters.clear();
                     num++;
@@ -64,6 +62,6 @@ public class Test3 {
                 characters.add(chars[i]);
             }
         }
-        return res;
+        return res.toString();
     }
 }

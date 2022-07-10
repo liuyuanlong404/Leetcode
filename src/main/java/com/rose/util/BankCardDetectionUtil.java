@@ -21,7 +21,7 @@ public class BankCardDetectionUtil {
      */
     public static String getCardDetail(String cardNo) {
         // 创建HttpClient实例
-        StringBuffer url = new StringBuffer("https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?_input_charset=utf-8&cardNo=");
+        StringBuilder url = new StringBuilder("https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?_input_charset=utf-8&cardNo=");
         url.append(cardNo).append("&cardBinCheck=true");
         StringBuilder sb = new StringBuilder();
         try {
