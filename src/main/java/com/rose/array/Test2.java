@@ -17,14 +17,14 @@ package com.rose.array;
 public class Test2 {
 
     public static void main(String[] args) {
-
+        maxProfit(new int[]{7,1,5,3,6,4});
     }
 
-    public int maxProfit(int[] prices) {
+    public static int maxProfit(int[] prices) {
         int total = 0;
         for (int i = 0; i < prices.length - 1; i++) {
             //原数组中如果后一个减去前一个是正数，说明是上涨的，
-            //我们就要累加，否则就不累加
+            //就要累加，否则就不累加
             total += Math.max(prices[i + 1] - prices[i], 0);
         }
         return total;

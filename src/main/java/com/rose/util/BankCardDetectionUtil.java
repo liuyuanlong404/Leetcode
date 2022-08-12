@@ -38,4 +38,8 @@ public class BankCardDetectionUtil {
         }
         return sb.toString();
     }
+
+    public static void main(String[] args) {
+        String cardDetail = getCardDetail("6217903600001081560");
+    }
 }

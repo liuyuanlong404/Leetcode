@@ -20,6 +20,6 @@ package com.rose.binary;
 public class Test744 {
 
     public char nextGreatestLetter(char[] letters, char target) {
-
+        return 'n';
     }
 }

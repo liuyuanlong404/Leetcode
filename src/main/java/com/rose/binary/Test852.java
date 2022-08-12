@@ -21,7 +21,7 @@ package com.rose.binary;
 public class Test852 {
 
     public static void main(String[] args) {
-        peakIndexInMountainArray(new int[]{1,2,4,5});
+
     }
 
     public static int peakIndexInMountainArray(int[] arr) {
