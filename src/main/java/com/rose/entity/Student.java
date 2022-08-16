@@ -30,4 +30,7 @@ public class Student {
         this.money = money;
         this.createTime = createTime;
     }
+
+    public Student(){}
+
 }

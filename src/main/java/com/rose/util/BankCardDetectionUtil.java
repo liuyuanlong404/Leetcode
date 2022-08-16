@@ -40,6 +40,6 @@ public class BankCardDetectionUtil {
     }
 
     public static void main(String[] args) {
-        String cardDetail = getCardDetail("6217903600001081560");
+        getCardDetail("6217903600001081560");
     }
 }
