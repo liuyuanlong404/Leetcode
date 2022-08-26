@@ -1,7 +1,5 @@
 package com.rose.jihai;
 
-import lombok.SneakyThrows;
-
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -51,18 +49,23 @@ public class ThreadPrintTest {
             this.character = character;
         }
 
-        @SneakyThrows
         @Override
         public void run() {
             do {
                 reentrantLock.lock();
-                if (index <= count) {
-                    System.out.println(character);
-                    index++;
+                try {
+                    if (index <= count) {
+                        System.out.println(character);
+                        index++;
+                    }
+                    nextCondition.signal();
+                    currentCondition.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }finally {
+                    reentrantLock.unlock();
                 }
-                nextCondition.signal();
-                currentCondition.await();
-                reentrantLock.unlock();
+
             } while (index <= count);
         }
     }

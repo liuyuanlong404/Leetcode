@@ -1,9 +1,12 @@
 package com.rose.functional.test;
 
 import com.rose.entity.Student;
+import com.rose.functional.TestSupplier;
 import lombok.Data;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -38,7 +41,7 @@ public class Test {
         System.out.println(test);
     }
 
-    public static <T> T maxBy(Supplier<T> supplier){
+    public static <T> T maxBy(TestSupplier<T> supplier){
         return supplier.get();
     }
 
