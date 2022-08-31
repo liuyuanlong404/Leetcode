@@ -1,5 +1,7 @@
 package com.rose.jihai;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -10,34 +12,40 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class ThreadPrintTest {
 
-
-    private static final ReentrantLock reentrantLock = new ReentrantLock();
+    private static final ReentrantLock REENTRANT_LOCK = new ReentrantLock();
 
     public static void main(String[] args) {
-        Condition printAcondition = reentrantLock.newCondition();
-        Condition printBcondition = reentrantLock.newCondition();
-        Condition printCcondition = reentrantLock.newCondition();
 
-        Thread t1 = new Thread(new PrintRunnable(reentrantLock, printAcondition, printBcondition, 34, 'A'));
-        Thread t2 = new Thread(new PrintRunnable(reentrantLock, printBcondition, printCcondition, 33, 'B'));
-        Thread t3 = new Thread(new PrintRunnable(reentrantLock, printCcondition, printAcondition, 33, 'C'));
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
 
-        t1.start();
-        t2.start();
-        t3.start();
+
+        Condition printAcondition = REENTRANT_LOCK.newCondition();
+        Condition printBcondition = REENTRANT_LOCK.newCondition();
+        Condition printCcondition = REENTRANT_LOCK.newCondition();
+
+        executorService.execute(() -> new PrintRunnable(REENTRANT_LOCK, printAcondition, printBcondition, 34, 'A').run());
+        executorService.execute(() -> new PrintRunnable(REENTRANT_LOCK, printBcondition, printCcondition, 33, 'B').run());
+        executorService.execute(() -> new PrintRunnable(REENTRANT_LOCK, printCcondition, printAcondition, 33, 'C').run());
+//        Thread t1 = new Thread(new PrintRunnable(REENTRANT_LOCK, printAcondition, printBcondition, 34, 'A'));
+//        Thread t2 = new Thread(new PrintRunnable(REENTRANT_LOCK, printBcondition, printCcondition, 33, 'B'));
+//        Thread t3 = new Thread(new PrintRunnable(REENTRANT_LOCK, printCcondition, printAcondition, 33, 'C'));
+//
+//        t1.start();
+//        t2.start();
+//        t3.start();
     }
 
     public static class PrintRunnable implements Runnable {
 
-        private ReentrantLock reentrantLock;
+        private final ReentrantLock reentrantLock;
 
-        private Condition currentCondition;
+        private final Condition currentCondition;
 
-        private Condition nextCondition;
+        private final Condition nextCondition;
 
-        private Integer count;
+        private final Integer count;
 
-        private Character character;
+        private final Character character;
 
         private Integer index = 0;
 
